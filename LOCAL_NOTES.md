@@ -1,4 +1,8 @@
-# Notes
+#Local Notes
+
+###### CircleCi:
+
+[![CircleCI](https://circleci.com/gh/johnwr-response/a4jd-rfb-loyalty/tree/start01.svg?style=svg)](https://circleci.com/gh/johnwr-response/a4jd-rfb-loyalty/tree/start01)
 
 ```
 
