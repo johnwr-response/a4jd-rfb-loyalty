@@ -62,6 +62,8 @@ jobs:
           name: install yarn
           command: sudo npm install -g yarn
 
+      - run: cp .mvn/wrapper/settings.xml ~/.m2/settings.xml
+      - run: echo "<settingsSecurity><master>${maven_security_master}</master></settingsSecurity>" > ~/.m2/settings-security.xml
       - run:
-          name: Build and Push Docker Image
+          name: Build and Push Docker Image with Jib
           command: mvn package -Pprod jib:build -DskipTests
