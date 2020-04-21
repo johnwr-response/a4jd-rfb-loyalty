@@ -4,16 +4,15 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { IRfbEventAttendance, RfbEventAttendance } from 'app/shared/model/rfb-event-attendance.model';
 import { RfbEventAttendanceService } from './rfb-event-attendance.service';
-import { IRfbUser } from 'app/shared/model/rfb-user.model';
-import { RfbUserService } from 'app/entities/rfb-user/rfb-user.service';
 import { IRfbEvent } from 'app/shared/model/rfb-event.model';
 import { RfbEventService } from 'app/entities/rfb-event/rfb-event.service';
+import { IRfbUser } from 'app/shared/model/rfb-user.model';
+import { RfbUserService } from 'app/entities/rfb-user/rfb-user.service';
 
-type SelectableEntity = IRfbUser | IRfbEvent;
+type SelectableEntity = IRfbEvent | IRfbUser;
 
 @Component({
   selector: 'jhi-rfb-event-attendance-update',
@@ -21,21 +20,21 @@ type SelectableEntity = IRfbUser | IRfbEvent;
 })
 export class RfbEventAttendanceUpdateComponent implements OnInit {
   isSaving = false;
-  rfbusers: IRfbUser[] = [];
   rfbevents: IRfbEvent[] = [];
+  rfbusers: IRfbUser[] = [];
   attendanceDateDp: any;
 
   editForm = this.fb.group({
     id: [],
     attendanceDate: [],
-    rfbUserId: [],
-    rfbEventId: []
+    rfbEventId: [],
+    rfbUserId: []
   });
 
   constructor(
     protected rfbEventAttendanceService: RfbEventAttendanceService,
-    protected rfbUserService: RfbUserService,
     protected rfbEventService: RfbEventService,
+    protected rfbUserService: RfbUserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -44,29 +43,9 @@ export class RfbEventAttendanceUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ rfbEventAttendance }) => {
       this.updateForm(rfbEventAttendance);
 
-      this.rfbUserService
-        .query({ filter: 'rfbeventattendance-is-null' })
-        .pipe(
-          map((res: HttpResponse<IRfbUser[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IRfbUser[]) => {
-          if (!rfbEventAttendance.rfbUserId) {
-            this.rfbusers = resBody;
-          } else {
-            this.rfbUserService
-              .find(rfbEventAttendance.rfbUserId)
-              .pipe(
-                map((subRes: HttpResponse<IRfbUser>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IRfbUser[]) => (this.rfbusers = concatRes));
-          }
-        });
-
       this.rfbEventService.query().subscribe((res: HttpResponse<IRfbEvent[]>) => (this.rfbevents = res.body || []));
+
+      this.rfbUserService.query().subscribe((res: HttpResponse<IRfbUser[]>) => (this.rfbusers = res.body || []));
     });
   }
 
@@ -74,8 +53,8 @@ export class RfbEventAttendanceUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: rfbEventAttendance.id,
       attendanceDate: rfbEventAttendance.attendanceDate,
-      rfbUserId: rfbEventAttendance.rfbUserId,
-      rfbEventId: rfbEventAttendance.rfbEventId
+      rfbEventId: rfbEventAttendance.rfbEventId,
+      rfbUserId: rfbEventAttendance.rfbUserId
     });
   }
 
@@ -98,8 +77,8 @@ export class RfbEventAttendanceUpdateComponent implements OnInit {
       ...new RfbEventAttendance(),
       id: this.editForm.get(['id'])!.value,
       attendanceDate: this.editForm.get(['attendanceDate'])!.value,
-      rfbUserId: this.editForm.get(['rfbUserId'])!.value,
-      rfbEventId: this.editForm.get(['rfbEventId'])!.value
+      rfbEventId: this.editForm.get(['rfbEventId'])!.value,
+      rfbUserId: this.editForm.get(['rfbUserId'])!.value
     };
   }
 
