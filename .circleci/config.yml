@@ -62,8 +62,12 @@ jobs:
           name: install yarn
           command: sudo npm install -g yarn
 
+      - run: mvn dependency:go-offline
       - run: cp .mvn/wrapper/settings.xml ~/.m2/settings.xml
       - run: echo "<settingsSecurity><master>${maven_security_master}</master></settingsSecurity>" > ~/.m2/settings-security.xml
+      - run:
+          name: Login to DockerHub
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run:
           name: Build and Push Docker Image with Jib
           command: mvn package -Pprod jib:build -DskipTests
