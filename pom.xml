@@ -21,6 +21,7 @@
 
     <properties>
         <!-- Build properties -->
+        <docker-hub.organisation>johnwr</docker-hub.organisation>
         <maven.version>3.3.9</maven.version>
         <java.version>1.8</java.version>
         <node.version>v12.16.1</node.version>
@@ -578,7 +579,7 @@
                             <image>adoptopenjdk:11-jre-hotspot</image>
                         </from>
                         <to>
-                            <image>rfbloyalty:latest</image>
+                            <image>${docker-hub.organisation}/${project.artifactId}:latest</image>
                         </to>
                         <container>
                             <entrypoint>

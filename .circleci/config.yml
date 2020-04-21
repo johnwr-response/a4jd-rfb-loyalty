@@ -63,6 +63,5 @@ jobs:
           command: sudo npm install -g yarn
 
       - run:
-          name: Build Docker Image
-#          command: mvn bootRepackage -Pprod pushDockerLatest pushDockerVersionTag -DskipTests
-          command: mvn package -Pprod jib:dockerBuild -DskipTests
+          name: Build and Push Docker Image
+          command: mvn package -Pprod jib:build -DskipTests
