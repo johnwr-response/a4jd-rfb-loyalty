@@ -18,6 +18,9 @@ mvn --encrypt-password
 mvn clean compile jib:build -DskipTests
 
 # Copy settings.xml to .mvn/wrapper/settings.xml in project
+
+jhipster import-jdl ./src/main/scripts/rfbtables.jh
+
 ```
 
 # Git
