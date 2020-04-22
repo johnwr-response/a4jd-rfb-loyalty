@@ -27,8 +27,8 @@ public class RfbEventCodeService {
         this.rfbEventRepository = rfbEventRepository;
     }
 
-//    @Scheduled(cron = "0 0 * * * ?") // run once pr. hour, at top of hour
-    @Scheduled(cron = "0 * * * * ?") // run once pr. min
+    @Scheduled(cron = "0 0 * * * ?") // run once pr. hour, at top of hour
+//    @Scheduled(cron = "0 * * * * ?") // run once pr. min
 //    @Scheduled(cron = "* * * * * ?") // run once pr. second
     public  void generateRunEventCodes() {
 
