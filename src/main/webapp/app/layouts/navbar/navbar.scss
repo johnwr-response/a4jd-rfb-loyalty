@@ -7,7 +7,12 @@ Navbar
 
 .navbar-version {
   font-size: 0.65em;
-  color: $navbar-dark-color;
+  color: $navbar-light-color;
+}
+
+.bg-light {
+  background-color: #ffffff !important;
+  padding: 0.2em 1em;
 }
 
 .profile-image {
@@ -33,10 +38,10 @@ Navbar
 Logo styles
 ========================================================================== */
 .logo-img {
-  height: 45px;
-  width: 45px;
+  height: 40px;
+  width: 100px;
   display: inline-block;
-  vertical-align: middle;
-  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  vertical-align: bottom;
+  background: url('../../../content/images/rfb_logo_small.png') no-repeat center center;
   background-size: contain;
 }

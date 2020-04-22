@@ -40,4 +40,8 @@ export class MainComponent implements OnInit {
     }
     this.titleService.setTitle(pageTitle);
   }
+
+  public getRouterUrl(): string {
+    return this.router.url;
+  }
 }
