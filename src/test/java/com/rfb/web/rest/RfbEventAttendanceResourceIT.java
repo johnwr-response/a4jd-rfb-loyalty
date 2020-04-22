@@ -1,6 +1,7 @@
 package com.rfb.web.rest;
 
 import com.rfb.RfbloyaltyApp;
+import com.rfb.config.TestSecurityConfiguration;
 import com.rfb.domain.RfbEventAttendance;
 import com.rfb.repository.RfbEventAttendanceRepository;
 import com.rfb.service.RfbEventAttendanceService;
@@ -30,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@link RfbEventAttendanceResource} REST controller.
  */
-@SpringBootTest(classes = RfbloyaltyApp.class)
+@SpringBootTest(classes = { RfbloyaltyApp.class, TestSecurityConfiguration.class })
 
 @AutoConfigureMockMvc
 @WithMockUser

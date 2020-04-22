@@ -42,8 +42,6 @@ public class CacheConfiguration {
             createCache(cm, com.rfb.domain.User.class.getName());
             createCache(cm, com.rfb.domain.Authority.class.getName());
             createCache(cm, com.rfb.domain.User.class.getName() + ".authorities");
-            createCache(cm, com.rfb.domain.PersistentToken.class.getName());
-            createCache(cm, com.rfb.domain.User.class.getName() + ".persistentTokens");
             createCache(cm, com.rfb.domain.RfbLocation.class.getName());
             createCache(cm, com.rfb.domain.RfbLocation.class.getName() + ".rfbEvents");
             createCache(cm, com.rfb.domain.RfbEvent.class.getName());

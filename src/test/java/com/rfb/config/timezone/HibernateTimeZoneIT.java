@@ -1,6 +1,7 @@
 package com.rfb.config.timezone;
 
 import com.rfb.RfbloyaltyApp;
+import com.rfb.config.TestSecurityConfiguration;
 import com.rfb.repository.timezone.DateTimeWrapper;
 import com.rfb.repository.timezone.DateTimeWrapperRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Integration tests for the UTC Hibernate configuration.
  */
-@SpringBootTest(classes = RfbloyaltyApp.class)
+@SpringBootTest(classes = {RfbloyaltyApp.class, TestSecurityConfiguration.class})
 public class HibernateTimeZoneIT {
 
     @Autowired

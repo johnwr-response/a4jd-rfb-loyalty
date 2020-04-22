@@ -23,6 +23,12 @@ jhipster import-jdl ./src/main/scripts/rfbtables.jh
 
 ```
 
+###### OAuth2:
+
+```
+docker-compose -f -d src/main/docker/keycloak.yml up
+```
+
 # Git
 
 ```
