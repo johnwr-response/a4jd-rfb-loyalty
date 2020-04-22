@@ -2,6 +2,7 @@ package com.rfb.repository;
 
 import com.rfb.RfbloyaltyApp;
 import com.rfb.bootstrap.RfbBootstrap;
+import com.rfb.config.TestSecurityConfiguration;
 import com.rfb.domain.RfbLocation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.DayOfWeek;
 import java.util.List;
 
-@SpringBootTest(classes = {RfbloyaltyApp.class})
+@SpringBootTest(classes = {RfbloyaltyApp.class, TestSecurityConfiguration.class})
 public class RfbLocationRepositoryTest extends AbstractRepositoryTest{
 
     @BeforeEach
