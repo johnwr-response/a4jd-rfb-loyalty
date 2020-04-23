@@ -144,9 +144,13 @@ public class UserService {
 
     private User syncUserWithIdP(Map<String, Object> details, User user) {
         // save authorities in to sync user roles/groups between IdP and JHipster's local database
+        log.info("User to be saved: {}", user);
+        log.info("Details to be saved: {}", details);
         Collection<String> dbAuthorities = getAuthorities();
+        log.info("Valid Authorities: {}", dbAuthorities);
         Collection<String> userAuthorities =
             user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toList());
+        log.info("User Authorities: {}", userAuthorities);
         for (String authority : userAuthorities) {
             if (!dbAuthorities.contains(authority)) {
                 log.debug("Saving authority '{}' in local database", authority);

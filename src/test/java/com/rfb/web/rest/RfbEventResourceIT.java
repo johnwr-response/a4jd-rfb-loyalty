@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = { RfbloyaltyApp.class, TestSecurityConfiguration.class })
 
 @AutoConfigureMockMvc
-@WithMockUser
+@WithMockUser(username="user@localhost",authorities={"ROLE_ADMIN"}, password = "user")
 public class RfbEventResourceIT {
 
     private static final LocalDate DEFAULT_EVENT_DATE = LocalDate.ofEpochDay(0L);
@@ -145,7 +145,7 @@ public class RfbEventResourceIT {
             .andExpect(jsonPath("$.[*].eventDate").value(hasItem(DEFAULT_EVENT_DATE.toString())))
             .andExpect(jsonPath("$.[*].eventCode").value(hasItem(DEFAULT_EVENT_CODE)));
     }
-    
+
     @Test
     @Transactional
     public void getRfbEvent() throws Exception {

@@ -15,6 +15,8 @@ export class LoginService {
   }
 
   logout(): void {
+
+
     this.authServerProvider.logout().subscribe((logout: Logout) => {
       let logoutUrl = logout.logoutUrl;
       const redirectUri = `${location.origin}${this.location.prepareExternalUrl('/')}`;
